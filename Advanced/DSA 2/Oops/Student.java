@@ -4,6 +4,7 @@ public class Student {
     int age;
     String batchName;
 
+    // this keyword
     void changeBatch(String batchName) {
         this.batchName = batchName;
     }
@@ -14,6 +15,7 @@ public class Student {
 
     public static void main(String[] args) {
 
+        // object creation
         Student s1 = new Student();
         s1.name = "Harsh";
         s1.age = 22;
