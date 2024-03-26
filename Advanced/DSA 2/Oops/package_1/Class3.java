@@ -1,17 +1,4 @@
-public class Class1 {
-
-    public int a = 1;
-    private int b = 2;
-    protected int c = 3;
-    int d = 4;
-
-    public void fn() {
-        System.out.println(b);
-    }
-
-}
-
-class Class2 {
+class Class3 {
 
     public static void main(String[] args) {
 
