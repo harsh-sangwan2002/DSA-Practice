@@ -1,26 +1,27 @@
 public class tower_of_hanoi {
 
-    int idx;
     int[][] arr;
+    int curr;
 
-    private void helper(int n, int t1, int t2, int t3){
+    private void toh(int n, int t1, int t2, int t3) {
 
-        if(n==0)
-        return;
+        if (n == 0)
+            return;
 
-        helper(n-1, t1, t3, t2);
+        toh(n - 1, t1, t3, t2);
 
-        arr[idx++] = new int[]{n,t1,t3};
+        arr[curr++] = new int[] { n, t1, t3 };
 
-        helper(n-1, t2, t1, t3);
+        toh(n - 1, t2, t1, t3);
     }
 
     public int[][] towerOfHanoi(int A) {
 
-        idx = 0;
-        arr = new int[(1<<A)-1][3];
+        arr = new int[(int) Math.pow(2, A) - 1][3];
+        curr = 0;
 
-        helper(A,1,2,3);
-        return arr;    
+        toh(A, 1, 2, 3);
+
+        return arr;
     }
 }
