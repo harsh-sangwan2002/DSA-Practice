@@ -12,11 +12,10 @@ public class pow_fn {
         if (B == 0)
             return 1;
 
-        long ans = pow(A, B / 2, C) % C;
-
+        long ans = (pow(A, B / 2, C) * 1L) % C;
         ans = (ans * ans) % C;
 
-        if (B % 2 == 1)
+        if (B % 2 != 0)
             ans = (ans * A) % C;
 
         if (ans < 0)
