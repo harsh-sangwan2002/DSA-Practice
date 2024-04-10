@@ -1,41 +1,42 @@
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
 
 public class generate_subsets {
 
-    public int[][] subsets(int[] A) {
-
-        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
-        Arrays.sort(A);
-        generateSubsets(A, 0, res, new ArrayList<>());
-
-        int[][] ans = new int[res.size()][];
-        int idx1 = 0;
-
-        for (ArrayList<Integer> list : res) {
-
-            int[] arr = new int[list.size()];
-            int idx2 = 0;
-
-            for (int val : list) {
-                arr[idx2++] = val;
-            }
-
-            ans[idx1++] = arr;
-        }
-
-        return ans;
-    }
-
-    private void generateSubsets(int[] arr, int idx, ArrayList<ArrayList<Integer>> res, ArrayList<Integer> list) {
+    private void generate(int[] arr, int idx, List<Integer> list, List<List<Integer>> res) {
 
         res.add(new ArrayList<>(list));
 
         for (int i = idx; i < arr.length; i++) {
 
             list.add(arr[i]);
-            generateSubsets(arr, i + 1, res, list);
+            generate(arr, i + 1, list, res);
             list.remove(list.size() - 1);
         }
+    }
+
+    public int[][] subsets(int[] A) {
+
+        Arrays.sort(A);
+        List<List<Integer>> res = new ArrayList<>();
+
+        generate(A, 0, new ArrayList<>(), res);
+
+        int[][] arr = new int[res.size()][];
+        int idx = 0;
+
+        for (List<Integer> list : res) {
+
+            int[] temp = new int[list.size()];
+            int curr = 0;
+
+            for (int val : list)
+                temp[curr++] = val;
+
+            arr[idx++] = temp;
+        }
+
+        return arr;
     }
 }
