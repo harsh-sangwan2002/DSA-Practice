@@ -2,25 +2,26 @@ import java.util.ArrayList;
 
 public class parenthesis {
 
-    private void helper(int n, String ans, ArrayList<String> res, int op, int cl) {
+    private void helper(int n, String str, int open, int close, ArrayList<String> res) {
 
-        if (ans.length() == 2 * n) {
+        if (str.length() == 2 * n) {
 
-            res.add(ans);
+            res.add(str);
             return;
         }
 
-        if (op < n)
-            helper(n, ans + "(", res, op + 1, cl);
+        if (open < n)
+            helper(n, str + "(", open + 1, close, res);
 
-        if (cl < op)
-            helper(n, ans + ")", res, op, cl + 1);
+        if (close < open)
+            helper(n, str + ")", open, close + 1, res);
     }
 
     public String[] generateParenthesis(int A) {
 
         ArrayList<String> res = new ArrayList<>();
-        helper(A, "", res, 0, 0);
+
+        helper(A, "", 0, 0, res);
 
         String[] arr = new String[res.size()];
         int idx = 0;
