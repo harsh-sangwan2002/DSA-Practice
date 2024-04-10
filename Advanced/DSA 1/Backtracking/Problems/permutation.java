@@ -1,47 +1,52 @@
-import java.util.ArrayList;
-
 public class permutation {
 
-    public int[][] permute(int[] A) {
+    int[][] arr;
+    int idx;
 
-        boolean[] visited = new boolean[A.length];
-        ArrayList<int[]> res = new ArrayList<>();
+    private int fact(int n) {
 
-        helper(A, new int[A.length], 0, res, visited);
+        if (n == 0 || n == 1)
+            return 1;
 
-        int[][] ans = new int[res.size()][];
-        int idx = 0;
-
-        for (int[] arr : res) {
-
-            ans[idx++] = arr;
-        }
-
-        return ans;
+        return n * fact(n - 1);
     }
 
-    private void helper(int[] arr, int[] ans, int idx, ArrayList<int[]> res, boolean[] visited) {
+    private void generate(int[] arr, int curr, int[] ans, int[][] res, boolean[] visited) {
 
-        if (idx >= arr.length) {
+        if (curr == arr.length) {
 
             int[] temp = new int[ans.length];
-            int i = 0;
-            for (int val : ans)
-                temp[i++] = val;
+            int idx2 = 0;
 
-            res.add(temp);
+            for (int val : ans)
+                temp[idx2++] = val;
+
+            res[idx++] = temp;
             return;
         }
 
         for (int i = 0; i < arr.length; i++) {
 
-            if (visited[i] == false) {
+            if (!visited[i]) {
 
-                ans[idx] = arr[i];
+                ans[curr] = arr[i];
                 visited[i] = true;
-                helper(arr, ans, idx + 1, res, visited);
+                generate(arr, curr + 1, ans, res, visited);
                 visited[i] = false;
             }
         }
+
+    }
+
+    public int[][] permute(int[] A) {
+
+        arr = new int[fact(A.length)][A.length];
+        idx = 0;
+
+        boolean[] visited = new boolean[A.length];
+
+        generate(A, 0, new int[A.length], arr, visited);
+
+        return arr;
     }
 }
