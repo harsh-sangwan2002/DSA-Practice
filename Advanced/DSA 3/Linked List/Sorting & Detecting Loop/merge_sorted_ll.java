@@ -1,16 +1,16 @@
-//  Definition for singly-linked list.
-
-class ListNode {
-    public int val;
-    public ListNode next;
-
-    ListNode(int x) {
-        val = x;
-        next = null;
-    }
-}
-
 public class merge_sorted_ll {
+
+    // Definition for singly-linked list.
+
+    class ListNode {
+        public int val;
+        public ListNode next;
+
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
+    }
 
     public ListNode mergeTwoLists(ListNode A, ListNode B) {
 
