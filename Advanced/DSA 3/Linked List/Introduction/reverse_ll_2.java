@@ -58,7 +58,7 @@ public class reverse_ll_2 {
             curr = curr.next;
         }
 
-        ListNode h2 = reverse(from);
+        reverse(from);
 
         if (first != null)
             first.next = to;
