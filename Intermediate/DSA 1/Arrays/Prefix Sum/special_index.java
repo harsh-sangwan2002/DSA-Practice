@@ -27,7 +27,7 @@ public class special_index {
 
         for (int i = 0; i < A.length; i++) {
 
-            int st1 = 0, et1 = i - 1, st2 = i + 1, et2 = A.length - 1;
+            int et2 = A.length - 1;
 
             if (i == 0) {
                 oddSum = even[et2] - even[i];
