@@ -1,4 +1,4 @@
-public class occurrences {
+public class count_occurrences {
 
     public int solve(String A) {
 
