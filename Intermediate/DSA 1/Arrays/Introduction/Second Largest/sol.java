@@ -1,14 +1,14 @@
-public class second_largest {
+public class sol {
 
     public int solve(int[] A) {
 
         if (A.length == 1)
             return -1;
 
-        int max = Integer.MIN_VALUE, smax = max;
+        int max = Integer.MIN_VALUE, smax = Integer.MIN_VALUE;
 
         for (int val : A)
-            max = Math.max(max, val);
+            max = Math.max(val, max);
 
         for (int val : A) {
 
