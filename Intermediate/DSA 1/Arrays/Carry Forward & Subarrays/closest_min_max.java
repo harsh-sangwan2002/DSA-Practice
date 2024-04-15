@@ -5,6 +5,7 @@ public class closest_min_max {
         int max = arr[0], min = arr[0];
 
         for (int val : arr) {
+
             max = Math.max(max, val);
             min = Math.min(min, val);
         }
@@ -20,24 +21,24 @@ public class closest_min_max {
         if (max == min)
             return 1;
 
-        int last_max = -1, last_min = -1, len = Integer.MAX_VALUE;
+        int len = A.length, minIdx = -1, maxIdx = -1;
 
         for (int i = 0; i < A.length; i++) {
 
             if (A[i] == max) {
 
-                if (last_min != -1)
-                    len = Math.min(len, i - last_min + 1);
+                if (minIdx != -1)
+                    len = Math.min(len, i - minIdx + 1);
 
-                last_max = i;
+                maxIdx = i;
             }
 
             else if (A[i] == min) {
 
-                if (last_max != -1)
-                    len = Math.min(len, i - last_max + 1);
+                if (maxIdx != -1)
+                    len = Math.min(len, i - maxIdx + 1);
 
-                last_min = i;
+                minIdx = i;
             }
         }
 

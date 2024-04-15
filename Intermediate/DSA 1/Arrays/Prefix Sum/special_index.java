@@ -2,9 +2,6 @@ public class special_index {
 
     public int solve(int[] A) {
 
-        if (A.length == 1)
-            return 1;
-
         int[] even = new int[A.length];
         int[] odd = new int[A.length];
 
@@ -26,18 +23,18 @@ public class special_index {
             }
         }
 
-        int evenSum = 0, oddSum = 0, count = 0;
+        int count = 0;
 
         for (int i = 0; i < A.length; i++) {
 
-            if (i == 0) {
+            int oddSum = 0, evenSum = 0;
 
-                evenSum = odd[A.length - 1] - odd[0];
-                oddSum = even[A.length - 1] - even[0];
+            if (i == 0) {
+                evenSum = odd[A.length - 1] - odd[i];
+                oddSum = even[A.length - 1] - even[i];
             }
 
             else {
-
                 evenSum = even[i - 1] + (odd[A.length - 1] - odd[i]);
                 oddSum = odd[i - 1] + (even[A.length - 1] - even[i]);
             }
