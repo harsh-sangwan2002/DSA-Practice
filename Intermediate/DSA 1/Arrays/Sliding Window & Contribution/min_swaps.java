@@ -2,7 +2,7 @@ public class min_swaps {
 
     public int solve(int[] A, int B) {
 
-        int count = 0;
+        int swaps = 0, count = 0;
 
         for (int val : A) {
 
@@ -13,29 +13,26 @@ public class min_swaps {
         if (count == A.length)
             return 0;
 
-        int bad = 0, ans = Integer.MAX_VALUE;
-
+        int bad = 0;
         for (int i = 0; i < count; i++) {
 
             if (A[i] > B)
                 bad++;
         }
 
-        ans = bad;
-
+        swaps = bad;
         for (int i = count; i < A.length; i++) {
 
             int prev = A[i - count];
-
             if (prev > B)
                 bad--;
 
             if (A[i] > B)
                 bad++;
 
-            ans = Math.min(ans, bad);
+            swaps = Math.min(swaps, bad);
         }
 
-        return ans;
+        return swaps;
     }
 }
