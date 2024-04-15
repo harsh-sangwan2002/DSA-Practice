@@ -1,4 +1,4 @@
-public class Solution {
+public class k_reverse {
 
     // Definition for singly-linked list.
     class ListNode {
