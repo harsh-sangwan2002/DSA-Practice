@@ -1,4 +1,4 @@
-public class reverse_string {
+public class sol {
 
     public String solve(String A) {
 
