@@ -5,10 +5,12 @@ public class count_elements {
         if (A.length == 1)
             return 0;
 
-        int max = Integer.MIN_VALUE, count = 0;
+        int max = A[0];
 
         for (int val : A)
-            max = Math.max(max, val);
+            max = Math.max(val, max);
+
+        int count = 0;
 
         for (int val : A) {
 
