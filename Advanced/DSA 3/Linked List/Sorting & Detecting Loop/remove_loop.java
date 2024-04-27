@@ -1,7 +1,6 @@
 public class remove_loop {
 
     // Definition for singly-linked list.
-
     class ListNode {
         public int val;
         public ListNode next;
@@ -31,19 +30,19 @@ public class remove_loop {
         if (!flag)
             return A;
 
-        slow = A;
-        while (slow != fast) {
-            slow = slow.next;
-            fast = fast.next;
+        ListNode s1 = A, s2 = fast;
+        while (s1 != s2) {
+            s1 = s1.next;
+            s2 = s2.next;
         }
 
-        ListNode temp = fast;
+        ListNode temp = s1;
 
-        while (temp.next != fast) {
+        while (temp.next != s1)
             temp = temp.next;
-        }
 
         temp.next = null;
+
         return A;
     }
 }

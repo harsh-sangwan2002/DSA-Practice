@@ -2,15 +2,11 @@ public class design_ll {
 
     public static class Node {
 
-        int data;
+        int val;
         Node next;
 
-        Node() {
-
-        }
-
-        Node(int data) {
-            this.data = data;
+        Node(int val) {
+            this.val = val;
             this.next = null;
         }
     }
@@ -26,7 +22,6 @@ public class design_ll {
             Node node = new Node(value);
 
             if (position == 1) {
-
                 node.next = head;
                 head = node;
             }
@@ -51,13 +46,11 @@ public class design_ll {
         if (position >= 1 && position <= size) {
 
             if (size == 1) {
-                head = null;
                 size--;
                 return;
             }
 
             if (position == 1) {
-
                 head = head.next;
                 size--;
                 return;
@@ -75,17 +68,17 @@ public class design_ll {
 
     public static void print_ll() {
         // Output each element followed by a space
-        Node temp = head;
+        Node node = head;
 
-        while (temp != null) {
+        while (node != null) {
 
-            if (temp.next == null)
-                System.out.print(temp.data);
+            if (node.next == null)
+                System.out.print(node.val);
 
             else
-                System.out.print(temp.data + " ");
+                System.out.print(node.val + " ");
 
-            temp = temp.next;
+            node = node.next;
         }
     }
 

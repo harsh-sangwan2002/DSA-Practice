@@ -16,43 +16,38 @@ public class infix_to_postfix {
 
     public String solve(String A) {
 
-        StringBuilder sb = new StringBuilder();
         Stack<Character> st = new Stack<>();
+        StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < A.length(); i++) {
 
             char ch = A.charAt(i);
 
-            if (ch != '(' && ch != ')' && ch != '+' && ch != '-' && ch != '*' && ch != '/' && ch != '^')
-                sb.append(ch);
-
-            else if (ch == '(')
+            if (ch == '(')
                 st.push(ch);
 
             else if (ch == ')') {
 
-                while (st.size() > 0 && st.peek() != '(') {
-                    char op = st.pop();
-                    sb.append(op);
-                }
+                while (st.size() != 0 && st.peek() != '(')
+                    sb.append(st.pop());
+
                 st.pop();
             }
 
-            else {
+            else if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^') {
 
-                while (st.size() != 0 && st.peek() != '(' && precedence(st.peek()) >= precedence(ch)) {
-                    char op = st.pop();
-                    sb.append(op);
-                }
+                while (st.size() != 0 && st.peek() != '(' && precedence(st.peek()) >= precedence(ch))
+                    sb.append(st.pop());
+
                 st.push(ch);
             }
+
+            else
+                sb.append(ch);
         }
 
-        while (st.size() != 0) {
-
-            char op = st.pop();
-            sb.append(op);
-        }
+        while (st.size() != 0)
+            sb.append(st.pop());
 
         return sb.toString();
     }

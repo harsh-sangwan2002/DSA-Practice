@@ -17,9 +17,8 @@ public class remove_dups {
             return A;
 
         ListNode temp = A;
-        ListNode dummy = A;
 
-        while (temp != null && temp.next != null) {
+        while (temp.next != null) {
 
             if (temp.val == temp.next.val)
                 temp.next = temp.next.next;
@@ -28,6 +27,6 @@ public class remove_dups {
                 temp = temp.next;
         }
 
-        return dummy;
+        return A;
     }
 }

@@ -5,25 +5,20 @@ class min_stack {
     Stack<Integer> st;
     Stack<Integer> min;
 
-    min_stack() {
+    public min_stack() {
         st = new Stack<>();
         min = new Stack<>();
     }
 
     public void push(int x) {
 
-        if (st.size() == 0) {
-            st.push(x);
+        st.push(x);
+
+        if (min.size() == 0)
             min.push(x);
-        }
 
-        else {
-
-            if (min.size() == 0 || min.peek() > x)
-                min.push(x);
-
-            st.push(x);
-        }
+        else if (x < min.peek())
+            min.push(x);
     }
 
     public void pop() {
@@ -33,9 +28,8 @@ class min_stack {
 
         int val = st.pop();
 
-        if (min.size() > 0 && val == min.peek())
+        if (val == min.peek())
             min.pop();
-
     }
 
     public int top() {
@@ -48,7 +42,7 @@ class min_stack {
 
     public int getMin() {
 
-        if (min.size() == 0)
+        if (st.size() == 0)
             return -1;
 
         return min.peek();

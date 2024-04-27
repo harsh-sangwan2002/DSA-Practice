@@ -1,7 +1,6 @@
 public class merge_sorted_ll {
 
     // Definition for singly-linked list.
-
     class ListNode {
         public int val;
         public ListNode next;
@@ -19,17 +18,18 @@ public class merge_sorted_ll {
         if (B == null)
             return A;
 
-        ListNode head = null, tail = null, h1 = A, h2 = B;
+        ListNode head = null, tail = null;
+        ListNode h1 = A, h2 = B;
 
         if (A.val < B.val) {
-            head = h1;
-            tail = h1;
+            head = A;
+            tail = A;
             h1 = h1.next;
         }
 
         else {
-            head = h2;
-            tail = h2;
+            head = B;
+            tail = B;
             h2 = h2.next;
         }
 

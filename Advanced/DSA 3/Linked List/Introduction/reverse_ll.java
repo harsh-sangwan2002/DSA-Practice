@@ -10,8 +10,11 @@ public class reverse_ll {
             next = null;
         }
     }
-    
+
     public ListNode reverseList(ListNode A) {
+
+        if (A == null || A.next == null)
+            return A;
 
         ListNode prev = null, curr = A;
 
@@ -23,6 +26,7 @@ public class reverse_ll {
             curr = node;
         }
 
-        return prev;
+        ListNode head = prev;
+        return head;
     }
 }

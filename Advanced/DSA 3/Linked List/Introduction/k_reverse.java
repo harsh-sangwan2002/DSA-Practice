@@ -1,22 +1,22 @@
 public class k_reverse {
 
-    // Definition for singly-linked list.
-    class ListNode {
-        public int val;
-        public ListNode next;
+    public class ListNode {
 
-        ListNode(int x) {
-            val = x;
-            next = null;
+        int val;
+        ListNode next;
+
+        ListNode(int val) {
+            this.val = val;
+            this.next = null;
         }
     }
 
-    private ListNode reverse(ListNode node) {
+    private ListNode reverse(ListNode A) {
 
-        if (node == null || node.next == null)
-            return node;
+        if (A == null || A.next == null)
+            return A;
 
-        ListNode prev = null, curr = node;
+        ListNode prev = null, curr = A;
 
         while (curr != null) {
 
@@ -31,21 +31,20 @@ public class k_reverse {
 
     public ListNode reverseList(ListNode A, int B) {
 
-        if (A == null || A.next == null || B == 1)
+        if (A == null || A.next == null)
             return A;
 
-        ListNode head = A, curr = A;
-
+        ListNode temp = A, h2 = temp;
         for (int i = 1; i < B; i++)
-            curr = curr.next;
+            temp = temp.next;
 
-        ListNode next = curr.next;
-        ListNode h2 = reverseList(next, B);
+        h2 = temp.next;
+        temp.next = null;
 
-        curr.next = null;
+        h2 = reverseList(h2, B);
         ListNode h1 = reverse(A);
 
-        head.next = h2;
+        A.next = h2;
         return h1;
     }
 }

@@ -11,12 +11,12 @@ public class reverse_ll_2 {
         }
     }
 
-    private ListNode reverse(ListNode head) {
+    private ListNode reverse(ListNode A) {
 
-        if (head == null || head.next == null)
-            return head;
+        if (A == null || A.next == null)
+            return A;
 
-        ListNode prev = null, curr = head;
+        ListNode prev = null, curr = A;
 
         while (curr != null) {
 
@@ -34,12 +34,13 @@ public class reverse_ll_2 {
         if (A == null || A.next == null || B >= C)
             return A;
 
-        ListNode curr = A, from = null, to = null, first = null, last = null, head = A;
+        ListNode first = null, last = null, from = null, to = null, curr = A;
+        ListNode head = A;
         int count = 0;
 
         while (curr != null) {
 
-            count += 1;
+            count++;
 
             if (count < B)
                 first = curr;

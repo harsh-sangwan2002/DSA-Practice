@@ -1,7 +1,6 @@
 public class middle_of_ll {
 
     // Definition for singly-linked list.
-
     class ListNode {
         public int val;
         public ListNode next;
@@ -13,9 +12,6 @@ public class middle_of_ll {
     }
 
     public int solve(ListNode A) {
-
-        if (A == null || A.next == null)
-            return A.val;
 
         ListNode slow = A, fast = A;
 

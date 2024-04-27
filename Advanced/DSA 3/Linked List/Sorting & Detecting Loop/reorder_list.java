@@ -1,7 +1,6 @@
 public class reorder_list {
 
     // Definition for singly-linked list.
-
     class ListNode {
         public int val;
         public ListNode next;
@@ -12,12 +11,12 @@ public class reorder_list {
         }
     }
 
-    private ListNode findMid(ListNode node) {
+    private ListNode findMid(ListNode A) {
 
-        if (node == null || node.next == null)
-            return node;
+        if (A == null || A.next == null)
+            return A;
 
-        ListNode slow = node, fast = node;
+        ListNode slow = A, fast = A;
 
         while (fast.next != null && fast.next.next != null) {
             slow = slow.next;
@@ -27,12 +26,12 @@ public class reorder_list {
         return slow;
     }
 
-    private ListNode reverse(ListNode node) {
+    private ListNode reverse(ListNode A) {
 
-        if (node == null || node.next == null)
-            return node;
+        if (A == null || A.next == null)
+            return A;
 
-        ListNode prev = null, curr = node;
+        ListNode prev = null, curr = A;
 
         while (curr != null) {
 
@@ -50,32 +49,31 @@ public class reorder_list {
         if (A == null || A.next == null)
             return A;
 
-        ListNode h1 = A;
-
         ListNode mid = findMid(A);
         ListNode h2 = mid.next;
         mid.next = null;
-        h2 = reverse(h2);
 
+        h2 = reverse(h2);
+        ListNode head = A, h1 = A;
         boolean flag = true;
 
         while (h1 != null && h2 != null) {
 
             if (flag) {
-                ListNode temp = h1.next;
+                ListNode node = h1.next;
                 h1.next = h2;
-                h1 = temp;
-                flag = false;
+                h1 = node;
             }
 
             else {
-                ListNode temp = h2.next;
+                ListNode node = h2.next;
                 h2.next = h1;
-                h2 = temp;
-                flag = true;
+                h2 = node;
             }
+
+            flag = !flag;
         }
 
-        return A;
+        return head;
     }
 }

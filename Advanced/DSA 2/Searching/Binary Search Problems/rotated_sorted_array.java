@@ -1,4 +1,4 @@
-public public class rotated_sorted_array {
+public class rotated_sorted_array {
 
     // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
     public int search(final int[] A, int B) {
@@ -12,7 +12,7 @@ public public class rotated_sorted_array {
             if (A[mid] == B)
                 return mid;
 
-            else if (A[lo] <= A[mid]) {
+            else if (A[lo] < A[mid]) {
 
                 if (B >= A[lo] && B < A[mid])
                     hi = mid - 1;
@@ -23,7 +23,7 @@ public public class rotated_sorted_array {
 
             else {
 
-                if (B <= A[hi] && B > A[mid])
+                if (B > A[mid] && B <= A[hi])
                     lo = mid + 1;
 
                 else

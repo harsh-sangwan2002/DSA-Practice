@@ -1,7 +1,6 @@
 public class sort_list {
 
     // Definition for singly-linked list.
-
     class ListNode {
         public int val;
         public ListNode next;
@@ -12,40 +11,25 @@ public class sort_list {
         }
     }
 
-    private ListNode findMid(ListNode head) {
+    private ListNode merge(ListNode A, ListNode B) {
 
-        if (head == null || head.next == null)
-            return head;
-
-        ListNode slow = head, fast = head;
-
-        while (fast.next != null && fast.next.next != null) {
-
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-
-        return slow;
-    }
-
-    private ListNode mergeLists(ListNode h1, ListNode h2) {
-
-        if (h1 == null)
-            return h2;
-        if (h2 == null)
-            return h1;
+        if (A == null)
+            return B;
+        if (B == null)
+            return A;
 
         ListNode head = null, tail = null;
+        ListNode h1 = A, h2 = B;
 
-        if (h1.val < h2.val) {
-            head = h1;
-            tail = h1;
+        if (A.val < B.val) {
+            head = A;
+            tail = A;
             h1 = h1.next;
         }
 
         else {
-            head = h2;
-            tail = h2;
+            head = B;
+            tail = B;
             h2 = h2.next;
         }
 
@@ -71,6 +55,22 @@ public class sort_list {
             tail.next = h1;
 
         return head;
+
+    }
+
+    private ListNode findMid(ListNode A) {
+
+        if (A == null || A.next == null)
+            return A;
+
+        ListNode slow = A, fast = A;
+
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
     }
 
     public ListNode sortList(ListNode A) {
@@ -82,8 +82,9 @@ public class sort_list {
         ListNode h2 = mid.next;
         mid.next = null;
 
-        ListNode h1 = sortList(A);
+        A = sortList(A);
         h2 = sortList(h2);
-        return mergeLists(h1, h2);
+
+        return merge(A, h2);
     }
 }
