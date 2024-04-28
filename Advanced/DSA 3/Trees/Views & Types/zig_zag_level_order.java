@@ -2,6 +2,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 public class zig_zag_level_order {
 
@@ -21,50 +22,69 @@ public class zig_zag_level_order {
     public int[][] zigzagLevelOrder(TreeNode A) {
 
         List<List<Integer>> res = new ArrayList<>();
+        Stack<TreeNode> st = new Stack<>();
         Queue<TreeNode> q = new ArrayDeque<>();
         q.add(A);
-        int flag = 0;
+
+        int lvl = 0;
 
         while (q.size() != 0) {
 
             List<Integer> list = new ArrayList<>();
             int n = q.size();
 
-            for (int i = 1; i <= n; i++) {
+            if (lvl % 2 == 0) {
 
-                TreeNode node = q.remove();
+                for (int i = 1; i <= n; i++) {
 
-                if (flag % 2 == 0)
+                    TreeNode node = q.remove();
+
                     list.add(node.val);
 
-                else
-                    list.add(0, node.val);
+                    if (node.left != null)
+                        q.add(node.left);
 
-                if (node.left != null)
-                    q.add(node.left);
-
-                if (node.right != null)
-                    q.add(node.right);
+                    if (node.right != null)
+                        q.add(node.right);
+                }
             }
 
-            flag++;
+            else {
+
+                for (int i = 1; i <= n; i++) {
+
+                    TreeNode node = q.remove();
+                    st.push(node);
+
+                    if (node.left != null)
+                        q.add(node.left);
+
+                    if (node.right != null)
+                        q.add(node.right);
+                }
+
+                while (st.size() != 0)
+                    list.add(st.pop().val);
+            }
+
             res.add(list);
+            lvl++;
         }
 
-        int[][] ans = new int[res.size()][];
+        int[][] arr = new int[res.size()][];
         int idx1 = 0;
 
-        for (List<Integer> list : res) {
+        for (List<Integer> l : res) {
 
-            int[] temp = new int[list.size()];
+            int[] temp = new int[l.size()];
             int idx2 = 0;
 
-            for (int val : list)
+            for (int val : l)
                 temp[idx2++] = val;
 
-            ans[idx1++] = temp;
+            arr[idx1++] = temp;
         }
 
-        return ans;
+        return arr;
     }
 }
