@@ -20,7 +20,7 @@ public class serialize_tree {
 
     public int[] solve(TreeNode A) {
 
-        List<Integer> res = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
         Queue<TreeNode> q = new ArrayDeque<>();
         q.add(A);
 
@@ -28,14 +28,9 @@ public class serialize_tree {
 
             TreeNode node = q.remove();
 
-            if (node.val == -1) {
+            list.add(node.val);
 
-                res.add(-1);
-            }
-
-            else {
-
-                res.add(node.val);
+            if (node.val != -1) {
 
                 if (node.left != null)
                     q.add(node.left);
@@ -51,12 +46,12 @@ public class serialize_tree {
             }
         }
 
-        int[] ans = new int[res.size()];
+        int[] arr = new int[list.size()];
         int idx = 0;
 
-        for (int val : res)
-            ans[idx++] = val;
+        for (int val : list)
+            arr[idx++] = val;
 
-        return ans;
+        return arr;
     }
 }
