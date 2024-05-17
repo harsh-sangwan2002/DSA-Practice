@@ -1,7 +1,7 @@
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-public class deserialize {
+public class deserialize_binary_tree {
 
     // Definition for binary tree
     class TreeNode {
@@ -18,42 +18,31 @@ public class deserialize {
 
     public TreeNode solve(int[] A) {
 
-        Queue<TreeNode> q = new ArrayDeque<>();
         TreeNode root = new TreeNode(A[0]);
+
+        Queue<TreeNode> q = new ArrayDeque<>();
         q.add(root);
+
         int idx = 1;
 
         while (q.size() != 0) {
 
             TreeNode node = q.remove();
 
-            if (node.val == -1)
-                continue;
-
             int val1 = A[idx];
             int val2 = A[idx + 1];
-            idx += 2;
 
-            if (val1 == -1) {
-                node.left = null;
-                q.add(new TreeNode(-1));
-            }
-
-            else {
+            if (val1 != -1) {
                 node.left = new TreeNode(val1);
                 q.add(node.left);
             }
 
-            if (val2 == -1) {
-                node.right = null;
-                q.add(new TreeNode(-1));
-            }
-
-            else {
+            if (val2 != -1) {
                 node.right = new TreeNode(val2);
                 q.add(node.right);
             }
 
+            idx += 2;
         }
 
         return root;
