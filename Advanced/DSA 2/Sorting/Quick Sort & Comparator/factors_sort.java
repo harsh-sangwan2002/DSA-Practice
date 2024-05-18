@@ -24,18 +24,12 @@ public class factors_sort {
 
     public ArrayList<Integer> solve(ArrayList<Integer> A) {
 
-        Collections.sort(A, (Integer a, Integer b) -> {
+        Collections.sort(A, (v1, v2) -> {
 
-            int f1 = factors(a);
-            int f2 = factors(b);
+            if (factors(v1) == factors(v2))
+                return v1 - v2;
 
-            if (f1 < f2)
-                return -1;
-
-            else if (f2 < f1)
-                return 1;
-
-            return a - b;
+            return factors(v1) - factors(v2);
         });
 
         return A;
