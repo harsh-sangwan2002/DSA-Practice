@@ -3,7 +3,7 @@ import java.util.Collections;
 
 public class wave_array {
 
-    private void swap(ArrayList<Integer> list, int x, int y) {
+    private static void swap(ArrayList<Integer> list, int x, int y) {
 
         int temp = list.get(x);
         list.set(x, list.get(y));
@@ -16,7 +16,6 @@ public class wave_array {
             return A;
 
         Collections.sort(A);
-
         swap(A, 0, 1);
 
         for (int i = 2; i <= A.size() - 2; i += 2)
