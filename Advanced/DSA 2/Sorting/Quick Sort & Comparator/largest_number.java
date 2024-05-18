@@ -1,20 +1,21 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Solution {
+public class largest_number {
+
     public String largestNumber(ArrayList<Integer> A) {
 
-        Collections.sort(A, (Integer a, Integer b) -> {
+        Collections.sort(A, (v1, v2) -> {
 
-            String s1 = String.valueOf(b) + String.valueOf(a);
-            String s2 = String.valueOf(a) + String.valueOf(b);
-            return s1.compareTo(s2);
+            String s1 = v1 + "" + v2;
+            String s2 = v2 + "" + v1;
+            return s2.compareTo(s1);
         });
 
         StringBuilder sb = new StringBuilder();
 
         for (int val : A)
-            sb.append(val + "");
+            sb.append(val);
 
         if (sb.charAt(0) == '0')
             return "0";
