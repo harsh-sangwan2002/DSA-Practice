@@ -3,31 +3,20 @@ import java.util.Collections;
 
 public class b_closest_points {
 
-    private int dist(int x, int y) {
+    private static int dist(int x, int y) {
 
         return x * x + y * y;
     }
 
-    public ArrayList<ArrayList<Integer>> solve(ArrayList<ArrayList<Integer>> A, int B) {
+    public ArrayList<ArrayList<Integer>> solve(ArrayList<ArrayList<Integer>> list, int B) {
 
-        Collections.sort(A, (l1, l2) -> {
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
 
-            return dist(l1.get(0), l1.get(1)) - dist(l2.get(0), l2.get(1));
-        });
+        Collections.sort(list, (p1, p2) -> dist(p1.get(0), p1.get(1)) - dist(p2.get(0), p2.get(1)));
 
-        ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+        for (int i = 0; i < B; i++)
+            res.add(list.get(i));
 
-        for (int i = 0; i < B; i++) {
-
-            int v1 = A.get(i).get(0);
-            int v2 = A.get(i).get(1);
-
-            ArrayList<Integer> temp = new ArrayList<>();
-            temp.add(v1);
-            temp.add(v2);
-            list.add(temp);
-        }
-
-        return list;
+        return res;
     }
 }
