@@ -1,6 +1,6 @@
 public class subarray_or {
 
-    private boolean checkBit(int n, int pos) {
+    private boolean check(int n, int pos) {
 
         if ((n & (1 << pos)) != 0)
             return true;
@@ -13,17 +13,15 @@ public class subarray_or {
         long sum = 0, mod = (long) (1e9 + 7);
         int n = A.length;
 
-        for (int i = 0; i <= 31; i++) {
+        for (int i = 0; i < 32; i++) {
 
-            int idx = A.length;
-            for (int j = A.length - 1; j >= 0; j--) {
+            int bit = 0;
+            for (int j = 0; j < A.length; j++) {
 
-                boolean bit = checkBit(A[j], i);
+                if (check(A[j], i))
+                    bit = j + 1;
 
-                if (bit)
-                    idx = j;
-
-                long contri = (n - idx) * 1L * (1 << i);
+                long contri = (bit) * 1L * (1 << i);
                 sum = (sum + contri) % mod;
             }
         }
