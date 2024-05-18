@@ -11,7 +11,6 @@ public class subarray_or {
     public int solve(int[] A) {
 
         long sum = 0, mod = (long) (1e9 + 7);
-        int n = A.length;
 
         for (int i = 0; i < 32; i++) {
 
