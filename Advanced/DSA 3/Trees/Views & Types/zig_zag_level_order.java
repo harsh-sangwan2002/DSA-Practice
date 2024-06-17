@@ -1,10 +1,4 @@
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Stack;
-
-public class zig_zag_level_order {
+public class Solution {
 
     // Definition for binary tree
     class TreeNode {
@@ -21,70 +15,61 @@ public class zig_zag_level_order {
 
     public int[][] zigzagLevelOrder(TreeNode A) {
 
+        Stack<TreeNode> st1 = new Stack<>();
+        Stack<TreeNode> st2 = new Stack<>();
         List<List<Integer>> res = new ArrayList<>();
-        Stack<TreeNode> st = new Stack<>();
-        Queue<TreeNode> q = new ArrayDeque<>();
-        q.add(A);
+        st1.push(A);
 
-        int lvl = 0;
-
-        while (q.size() != 0) {
+        while (st1.size() != 0 || st2.size() != 0) {
 
             List<Integer> list = new ArrayList<>();
-            int n = q.size();
+            while (st1.size() != 0) {
 
-            if (lvl % 2 == 0) {
+                TreeNode node = st1.pop();
+                list.add(node.val);
 
-                for (int i = 1; i <= n; i++) {
+                if (node.left != null)
+                    st2.push(node.left);
 
-                    TreeNode node = q.remove();
-
-                    list.add(node.val);
-
-                    if (node.left != null)
-                        q.add(node.left);
-
-                    if (node.right != null)
-                        q.add(node.right);
-                }
+                if (node.right != null)
+                    st2.push(node.right);
             }
 
-            else {
+            if (list.size() != 0)
+                res.add(list);
 
-                for (int i = 1; i <= n; i++) {
+            list = new ArrayList<>();
 
-                    TreeNode node = q.remove();
-                    st.push(node);
+            while (st2.size() != 0) {
 
-                    if (node.left != null)
-                        q.add(node.left);
+                TreeNode node = st2.pop();
+                list.add(node.val);
 
-                    if (node.right != null)
-                        q.add(node.right);
-                }
+                if (node.right != null)
+                    st1.push(node.right);
 
-                while (st.size() != 0)
-                    list.add(st.pop().val);
+                if (node.left != null)
+                    st1.push(node.left);
             }
 
-            res.add(list);
-            lvl++;
+            if (list.size() != 0)
+                res.add(list);
         }
 
-        int[][] arr = new int[res.size()][];
+        int[][] ans = new int[res.size()][];
         int idx1 = 0;
 
-        for (List<Integer> l : res) {
+        for (List<Integer> list : res) {
 
-            int[] temp = new int[l.size()];
+            int[] arr = new int[list.size()];
             int idx2 = 0;
 
-            for (int val : l)
-                temp[idx2++] = val;
+            for (int val : list)
+                arr[idx2++] = val;
 
-            arr[idx1++] = temp;
+            ans[idx1++] = arr;
         }
 
-        return arr;
+        return ans;
     }
 }
